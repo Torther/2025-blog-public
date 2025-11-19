@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { useCenterStore } from '@/hooks/use-center'
+import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { styles as hiCardStyles } from '../app/(home)/hi-card'
 import { CARD_SPACING } from '@/consts'
 import ScrollOutlineSVG from '@/svgs/scroll-outline.svg'
@@ -67,6 +68,7 @@ const extraSize = 8
 export default function NavCard() {
 	const pathname = usePathname()
 	const center = useCenterStore()
+	const { siteContent } = useConfigStore()
 	const [show, setShow] = useState(false)
 	const { maxSM } = useSize()
 	const [hoveredIndex, setHoveredIndex] = useState<number>(0)
@@ -130,8 +132,8 @@ export default function NavCard() {
 				className={clsx('overflow-hidden', form === 'mini' && 'p-3', form === 'icons' && 'flex items-center gap-6 p-3')}>
 				<Link className='flex items-center gap-3' href='/'>
 					<Image src='/images/avatar.png' alt='avatar' width={40} height={40} style={{ boxShadow: ' 0 12px 20px -5px #E2D9CE' }} className='rounded-full' />
-					{form === 'full' && <span className='font-averia mt-1 text-2xl leading-none font-medium'>YYsuni</span>}
-					{form === 'full' && <span className='text-brand mt-2 text-xs font-medium'>(开发中)</span>}
+					{form === 'full' && <span className='font-averia mt-1 text-2xl leading-none font-medium'>{siteContent.meta.author}</span>}
+					{form === 'full' && <span className='text-brand mt-2 text-xs font-medium'>{siteContent.meta.status}</span>}
 				</Link>
 
 				{(form === 'full' || form === 'icons') && (
@@ -146,11 +148,11 @@ export default function NavCard() {
 								animate={
 									form === 'icons'
 										? {
-												left: hoveredIndex * (itemHeight + 24) - extraSize,
-												top: -extraSize,
-												width: itemHeight + extraSize * 2,
-												height: itemHeight + extraSize * 2
-											}
+											left: hoveredIndex * (itemHeight + 24) - extraSize,
+											top: -extraSize,
+											width: itemHeight + extraSize * 2,
+											height: itemHeight + extraSize * 2
+										}
 										: { top: hoveredIndex * (itemHeight + 8), left: 0, width: '100%', height: itemHeight }
 								}
 								transition={{

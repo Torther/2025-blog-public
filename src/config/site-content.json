@@ -1,7 +1,10 @@
 {
 	"meta": {
-		"title": "Molink",
-		"description": ""
+		"title": "My Blog",
+		"description": "",
+		"email": "",
+		"author": "YYsuni",
+		"status": "(开发中)"
 	},
 	"theme": {
 		"colorBrand": "#35bfab"

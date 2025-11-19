@@ -12,9 +12,9 @@ type LikeButtonProps = {
 	delay?: number
 }
 
-const ENDPOINT = 'https://blog-liker.yysuni1001.workers.dev/api/like'
+const ENDPOINT = process.env.NEXT_PUBLIC_LIKE_API_URL || '/api/like'
 
-export default function LikeButton({ slug = 'yysuni', delay, className }: LikeButtonProps) {
+export default function LikeButton({ slug = 'default-slug', delay, className }: LikeButtonProps) {
 	const [liked, setLiked] = useState(false)
 	const [show, setShow] = useState(false)
 	const [justLiked, setJustLiked] = useState(false)

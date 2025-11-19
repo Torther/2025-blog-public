@@ -336,6 +336,37 @@ export default function ConfigDialog({ open, onClose }: ConfigDialogProps) {
 					</div>
 
 					<div>
+						<label className='mb-2 block text-sm font-medium'>邮箱</label>
+						<input
+							type='text'
+							value={formData.meta.email || ''}
+							onChange={e => setFormData({ ...formData, meta: { ...formData.meta, email: e.target.value } })}
+							className='w-full rounded-lg border bg-gray-100 px-4 py-2 text-sm'
+						/>
+					</div>
+
+					<div className='grid grid-cols-2 gap-4'>
+						<div>
+							<label className='mb-2 block text-sm font-medium'>作者名称</label>
+							<input
+								type='text'
+								value={formData.meta.author || ''}
+								onChange={e => setFormData({ ...formData, meta: { ...formData.meta, author: e.target.value } })}
+								className='w-full rounded-lg border bg-gray-100 px-4 py-2 text-sm'
+							/>
+						</div>
+						<div>
+							<label className='mb-2 block text-sm font-medium'>状态文本</label>
+							<input
+								type='text'
+								value={formData.meta.status || ''}
+								onChange={e => setFormData({ ...formData, meta: { ...formData.meta, status: e.target.value } })}
+								className='w-full rounded-lg border bg-gray-100 px-4 py-2 text-sm'
+							/>
+						</div>
+					</div>
+
+					<div>
 						<label className='mb-2 block text-sm font-medium'>主题色</label>
 						<div className='flex items-center gap-3'>
 							<input
